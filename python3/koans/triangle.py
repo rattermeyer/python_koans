@@ -7,7 +7,7 @@
 # (represented by a, b and c) and returns the type of triangle.
 #
 # It returns:
-#   'equilateral'  if all sides are equal
+# 'equilateral'  if all sides are equal
 #   'isosceles'    if exactly 2 sides are equal
 #   'scalene'      if no sides are equal
 #
@@ -18,7 +18,17 @@
 #
 def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    sides = sorted([a, b, c])
+    unique_sides = sorted({a, b, c})
+    if unique_sides[0] <= 0: raise TriangleError('Sides cannot be 0 or less')
+    if sides[0] + sides[1] <= sides[2]: raise TriangleError('sum of 2 sides cannot be less than remaining side')
+    if len(unique_sides) == 1:
+        return 'equilateral'
+    if len(unique_sides) == 2:
+        return 'isosceles'
+    elif len(unique_sides) == 3:
+        return 'scalene'
+
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
